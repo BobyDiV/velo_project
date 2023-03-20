@@ -6,8 +6,10 @@ const morgan = require('morgan');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
-// const { sequelize } = require('../db/models');
-const renderTemplate = require('../lib/renderReactModule');
+const ssrEngine = require('./middleware/ssrEngine');
+// const authCheck = require('./middleware/authCheck');
+
+const indexRouter = require('./routes/index.router');
 
 const app = express();
 
@@ -18,12 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Выносим порт в .env и на всякий случай подставляем дефолтный через ||
-const { PORT, SESSION_SECRET } = process.env;
+
+const PORT = process.env.PORT ?? 3000;
 
 const sessionConfig = {
-  name: 'your coockie name', // * Название куки
+  name: 'biscuitEater', // * Название куки
   store: new FileStore(), // * подключение стора (БД для куки) для хранения
-  secret: SESSION_SECRET ?? 'your key', // * ключ для шифрования куки
+  secret: process.env.SESSION_SECRET, // * ключ для шифрования куки
   resave: false, // * если true, пересохраняет сессию, даже если она не поменялась
   saveUninitialized: false, // * Если false, куки появляются только при установке req.session
   cookie: {
@@ -32,7 +35,15 @@ const sessionConfig = {
   },
 };
 
+// Создание сессии
 app.use(session(sessionConfig));
+
+// Отрисовка страниц res.render()
+app.use(ssrEngine);
+
+// app.use('/', indexRouter);
+
+console.log('here');
 
 app.listen(PORT, async () => {
   try {

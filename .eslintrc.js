@@ -19,5 +19,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    jsx-quotes: 0,
   },
 };
