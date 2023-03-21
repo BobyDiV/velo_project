@@ -41,7 +41,7 @@ app.use(session(sessionConfig));
 // Отрисовка страниц res.render()
 app.use(ssrEngine);
 
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
 
 console.log('here');
 

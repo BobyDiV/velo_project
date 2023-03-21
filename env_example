@@ -1,0 +1,4 @@
+DB_URI=postgres://DBUser:DBPassword@localhost:5432/DBName
+PORT
+SESSION_SECRET={session_key}
+API_KEY=....
