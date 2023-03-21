@@ -43,8 +43,6 @@ app.use(ssrEngine);
 
 app.use('/', indexRouter);
 
-console.log('here');
-
 app.listen(PORT, async () => {
   try {
     await sequelize.authenticate();
