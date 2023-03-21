@@ -16,6 +16,7 @@ function Home(props) {
           <button id='regBtn'>Registration</button>
         </>
       )}
+      <div id='map'></div>
       <script src='/js/homeScript.js'></script>
     </Layout>
   );

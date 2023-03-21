@@ -5,5 +5,9 @@ const Home = require('../views/Home');
 const bcrypt = require('bcrypt');
 
 router.get('/', (req, res, next) => {
-  res.render(Home, {});
+  const API_KEY = process.env.API_KEY;
+
+  res.render(Home, { API_KEY });
 });
+
+module.exports = router;

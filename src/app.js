@@ -41,9 +41,7 @@ app.use(session(sessionConfig));
 // Отрисовка страниц res.render()
 app.use(ssrEngine);
 
-// app.use('/', indexRouter);
-
-console.log('here');
+app.use('/', indexRouter);
 
 app.listen(PORT, async () => {
   try {

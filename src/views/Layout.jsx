@@ -1,6 +1,6 @@
 const React = require('react');
 
-function Layout({ title, children }) {
+function Layout({ title, children, API_KEY }) {
   return (
     <html lang='en'>
       <head>
@@ -24,12 +24,19 @@ function Layout({ title, children }) {
 
         <link rel='icon' type='image/x-icon' href='/assets/favicon.ico' />
         <link rel='stylesheet' href='/css/publicStyles.css' />
+        <link rel='stylesheet' href='/css/homeStyle.css' />
         <script defer src='/js/publicScript.js' />
+
+        <script
+          src={`https://api-maps.yandex.ru/2.1/?apikey=${API_KEY}&lang=ru_RU`}
+          type='text/javascript'
+        />
 
         <title>{title}</title>
       </head>
       <body>
         <h1>Project X</h1>
+        <div id='map'></div>
         <div className='container'>{children}</div>
         <footer>footer</footer>
       </body>
